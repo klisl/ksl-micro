@@ -2,9 +2,9 @@
 
 require_once '../define.php'; //константы	
 
-require_once '../app/system/helpers.php'; //глобальные функции-помошники	
+require_once '../app/helpers.php'; //глобальные функции-помошники	
 
-require_once '../app/system/ClassLoader.php';	
+require_once '../vendor/ClassLoader.php';	
 spl_autoload_register(['ClassLoader', 'autoload'], true, true); //автозагрузчик классов
 
 
