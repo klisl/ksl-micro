@@ -1,0 +1,16 @@
+Options +FollowSymlinks
+Options -Indexes
+
+##Запрещаем доступ к файлам указанных расширений
+<FilesMatch "(?i)((\.log|(?<!robots)\.txt))">
+Require all denied
+</FilesMatch>
+
+##Переопределяем URL с помощью mod_rewrite
+RewriteEngine On
+RewriteBase /
+RewriteRule ^sitemap.xml$ index.php?route=extension/feed/google_sitemap [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !.*\.(ico|gif|jpg|jpeg|png|js|css)
+RewriteRule ^([^?]*) index.php?_route_=$1 [L,QSA]
