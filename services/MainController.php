@@ -1,9 +1,9 @@
 <?php
 
-namespace Service;
+namespace Services;
 
-use Service\View;
-use Service\Request;
+use Services\View;
+use Services\Request;
 
 abstract class MainController {
 	protected $request;

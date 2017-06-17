@@ -4,16 +4,17 @@
  * или придется внести изменения в метод library() для формирования пути к файлу классов.
  * Так же можно вписать в карту классов (classes.php) произвольный путь к файлу.
  */
-class ClassLoader {
+class ClassLoader 
+{
  
     public static $classMap;
     public static $addMap = array();
 	/*
-	 * Где искать указанное пространство имен, если его название не совпадает с названием каталога
-	 * Например пространство имен Service находится в папке vendor
+	 * Где искать пространство имен класса.
+	 * Например пространство имен Services находится в папке lib/classes
 	 */
     public static $psr = [
-		'Service' => 'vendor'
+//		'Services' => 'lib/classes'
 	];
  
     public static function autoload($className)
@@ -49,7 +50,7 @@ class ClassLoader {
 		
 		/*
 		 * Название первого элемента пространства имен класса может отличаться от
-		 * названия каталога (vendor), поэтому проверяем на что его нужно заменить
+		 * названия каталога (services), поэтому проверяем на что его нужно заменить
 		 */
 		Foreach (self::$psr as $key => $elem){
 			if($arr_className[0] == $key){
@@ -60,10 +61,14 @@ class ClassLoader {
 		 * Соединяем массив обратно в строку. По сути это является пространством имен данного класса
 		 * оно же является и путем к файлу класса
 		 */
-		$classNameSpace = implode("/", $arr_className);
+		$classNameSpace = implode(DIRECTORY_SEPARATOR, $arr_className);
 		
-		//т.к. названия папок везде с маленькой буквы - при вставке $classNameSpace переводим в нижний регистр
-		$filename = ROOT_DIR . '/'. strtolower($classNameSpace) . '/'. $class . ".php"; //формирование названия файла с классом
+		/*  
+		 * Формирование названия файла с классом.
+		 * Т.к. названия папок везде с маленькой буквы, а пространства имен могут быть с большой - 
+		 *  при вставке $classNameSpace переводим в нижний регистр
+		 */
+		$filename = ROOT_DIR . DIRECTORY_SEPARATOR . strtolower($classNameSpace) . DIRECTORY_SEPARATOR . $class . ".php";
 
 			if (is_readable($filename)) {
 				require_once $filename;

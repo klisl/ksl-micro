@@ -2,7 +2,7 @@
 
 namespace App\Widgets;
 
-use Service\Widget;
+use Services\Widget;
 
 
 class StockWidget extends Widget{

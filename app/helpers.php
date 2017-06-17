@@ -18,10 +18,10 @@ function app($bindings=null, array $parameters = [])
 {
 	// вызов без параметров вернет объект всего контейнера
 	if (is_null($bindings)) {
-		return Service\Container::getInstance();
+		return Services\Container::getInstance();
 	}
 	
-	return Service\Container::getInstance()->make($bindings, $parameters);
+	return Services\Container::getInstance()->make($bindings, $parameters);
 }
 
 

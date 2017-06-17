@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-use Service\MainController;
+use Services\MainController;
 use App\Models\Site;
-use Service\Session;
+use Services\Session;
 
 /*
  * Название класса и файла контроллера должно быть с большой буквы и 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Service;
+namespace Services;
 
 use ReflectionClass;
 
@@ -179,7 +179,7 @@ class Container
 	//Служебные классы для добавления в контейнер при загрузке приложения
 	protected function getCoreClasses()
     {
-        return require (ROOT_DIR.'/vendor/aliases.php');
+        return require (ROOT_DIR.'/services/aliases.php');
     }
 	
 	

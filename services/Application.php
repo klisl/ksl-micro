@@ -1,7 +1,7 @@
 <?php
 
-namespace Service;
-use Service\Container;
+namespace Services;
+use Services\Container;
 
 class Application
 {
