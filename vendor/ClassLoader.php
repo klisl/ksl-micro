@@ -41,6 +41,11 @@ class ClassLoader {
 	{
 
 		$arr_className = explode('\\', $className); //  разделяем строку по символу "\"
+		/*
+		 * Последний элемент массива - это название класса (оно же и название файла)
+		 * сохраняем его и убираем из массива
+		 */
+		$class = array_pop($arr_className);
 		
 		/*
 		 * Название первого элемента пространства имен класса может отличаться от
@@ -51,11 +56,15 @@ class ClassLoader {
 				$arr_className[0] = $elem;				
 			}
 		}
-		$className = implode("\\", $arr_className);
+		/*
+		 * Соединяем массив обратно в строку. По сути это является пространством имен данного класса
+		 * оно же является и путем к файлу класса
+		 */
+		$classNameSpace = implode("/", $arr_className);
 		
-		
-		$filename = ROOT_DIR . '/'. $className . ".php"; //формирование названия файла с классом
-		
+		//т.к. названия папок везде с маленькой буквы - при вставке $classNameSpace переводим в нижний регистр
+		$filename = ROOT_DIR . '/'. strtolower($classNameSpace) . '/'. $class . ".php"; //формирование названия файла с классом
+
 			if (is_readable($filename)) {
 				require_once $filename;
 			}
