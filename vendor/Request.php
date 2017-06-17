@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor;
+namespace Service;
 
 class Request {
 	public $get = array();

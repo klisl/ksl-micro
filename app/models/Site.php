@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use Vendor\DataBase\Db;
-use Vendor\Model;
+use Service\DataBase\Db;
+use Service\Model;
 
 class Site extends Model{
 

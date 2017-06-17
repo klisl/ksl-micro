@@ -1,8 +1,8 @@
 <?php
 
-namespace Vendor;
+namespace Service;
 
-use Vendor\DataBase\Db;
+use Service\DataBase\Db;
 
 abstract class Model {
 	public $db;

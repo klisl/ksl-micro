@@ -1,25 +1,23 @@
 <?php 
-
+/*
+ * Для использования автозагрузчика необходимо следовать рекомедациям PSR-4
+ * или придется внести изменения в метод library() для формирования пути к файлу классов.
+ * Так же можно вписать в карту классов (classes.php) произвольный путь к файлу.
+ */
 class ClassLoader {
  
     public static $classMap;
     public static $addMap = array();
-	//каталоги в которых будем искать классы если нет в карте классов
-    public static $dir = [
-		'',
-		'/vendor',
-		'/app/models',
-		'/app/widgets',
-    ];
-     
-    //Добавить класс к карте классов
-    public static function addClassMap($class = array()){
-            self::$addMap = array_merge(self::$addMap, $class);
-        }
+	/*
+	 * Где искать указанное пространство имен, если его название не совпадает с названием каталога
+	 * Например пространство имен Service находится в папке vendor
+	 */
+    public static $psr = [
+		'Service' => 'vendor'
+	];
  
-    public static function autoload($className){
-		
-
+    public static function autoload($className)
+	{		
 		//подключаем и сохраняем карту классов. Добавляем пользовательские классы.
 		self::$classMap = array_merge(require('classes.php'), self::$addMap);
 
@@ -39,18 +37,28 @@ class ClassLoader {
 		}   
     }
      
-    public static function library($className){
+    public static function library($className)
+	{
+
+		$arr_className = explode('\\', $className); //  разделяем строку по символу "\"
 		
-		$temp = explode('\\', $className); //  разделяем строку по символу "\"
-		$className = end($temp); // выбираем последний элемент массива
+		/*
+		 * Название первого элемента пространства имен класса может отличаться от
+		 * названия каталога (vendor), поэтому проверяем на что его нужно заменить
+		 */
+		Foreach (self::$psr as $key => $elem){
+			if($arr_className[0] == $key){
+				$arr_className[0] = $elem;				
+			}
+		}
+		$className = implode("\\", $arr_className);
 		
-		foreach (self::$dir as $d){
-			$filename = ROOT_DIR . $d . '/'. $className . ".php";
+		
+		$filename = ROOT_DIR . '/'. $className . ".php"; //формирование названия файла с классом
 		
 			if (is_readable($filename)) {
 				require_once $filename;
 			}
-		}  
 	}
      
 }

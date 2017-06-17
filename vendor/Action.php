@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor;
+namespace Service;
 
 use ReflectionClass;
 

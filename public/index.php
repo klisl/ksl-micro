@@ -8,5 +8,5 @@ require_once '../vendor/ClassLoader.php';
 spl_autoload_register(['ClassLoader', 'autoload'], true, true); //автозагрузчик классов
 
 
-$app = new Vendor\Application();
+$app = new Service\Application();
 $app->run();

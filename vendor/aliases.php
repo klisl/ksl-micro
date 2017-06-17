@@ -4,9 +4,9 @@
  */
 return [
 
-	'request' => \Vendor\Request::class,
-	'router' => \Vendor\Router::class,
-	'response' => \Vendor\Response::class,
-	'action' => \Vendor\Action::class,
+	'request' => \Service\Request::class,
+	'router' => \Service\Router::class,
+	'response' => \Service\Response::class,
+	'action' => \Service\Action::class,
 	
 ];

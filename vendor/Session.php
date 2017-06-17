@@ -1,6 +1,6 @@
 <?php
 
-namespace Vendor;
+namespace Service;
 
 /*
  * start - открытие сессии;
@@ -10,7 +10,7 @@ namespace Vendor;
  * destroy - закрытие сессии
  * 
  * Пример использования:
- * 	$session = \Vendor\Session::class;
+ * 	$session = \Service\Session::class;
  *	$session::start();
  *	$session::set('ksl', 10)
  */

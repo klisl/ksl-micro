@@ -5,5 +5,5 @@
  * название класса/путь от корня
  */
 return [   
-	Vendor\DataBase\SafeMySQL::class => '/vendor/DataBase/SafeMySQL.php'
+//	Service\DataBase\SafeMySQL::class => '/vendor/DataBase/SafeMySQL.php'
 ];
